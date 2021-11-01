@@ -25,7 +25,7 @@ services:
       - DB_PORT=$MONGODB_DOCKER_PORT
     stdin_open: true
     tty: true
-   swagger:
+  swagger:
     image: swaggerapi/swagger-ui
     ports:
       - "8085:8085"
@@ -38,3 +38,4 @@ services:
 
 volumes:
   db:
+  swagger:
