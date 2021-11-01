@@ -1,0 +1,21 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+# new code
+#The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+
+Vagrant.configure(2) do |config|
+	config.vm.box = "bento/ubuntu-18.04"
+	
+	config.vm.define :node1 do |node1_config|
+		node1_config.vm.host_name = "node1"
+		node1_config.vm.network "private_network", ip:"172.17.8.101"
+		node1_config.vm.provider :virtualbox do |vb|
+			vb.customize ["modifyvm", :id, "--memory", "1048"]
+			vb.customize ["modifyvm", :id, "--cpus", "1"]
+		end
+	end
+	
+end
