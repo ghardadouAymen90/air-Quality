@@ -1,0 +1,228 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "A REST API responsible for exposing information on the air quality of a nearest city to GPS coordinates using iqair. ©Created by **Ghardadou Aymen**",
+        "version": "1.0.0",
+        "title": "AIR-QUALITY"
+    },
+    "host": "",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "status",
+            "description": "Operations about Status"
+        },
+        {
+            "name": "airQuality",
+            "description": "Operations about airQuality"
+        }
+    ],
+    "paths": {
+        "/v2/airquality/nearest_city": {
+            "get": {
+                "tags": [
+                    "airQuality"
+                ],
+                "summary": "get pollution data by city",
+                "operationId": "display data of pollution of the nearest city and by latittude and longitude",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "lon",
+                        "in": "query",
+                        "description": "longitude",
+                        "required": false,
+                        "type": "number",
+                        "minimum": -180,
+                        "maximum": 180,
+                        "default": 0
+                    },
+                    {
+                        "name": "lat",
+                        "in": "query",
+                        "description": "latitude",
+                        "required": false,
+                        "type": "number",
+                        "minimum": -90,
+                        "maximum": 90,
+                        "default": 0
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "examples": {
+                            "application/json": "{\r\n  \"result\": {\r\n  \"pollution\": { \r\n  \"ts\": \"2021-10-31T12:00:00.000Z\",\r\n  \"aquis\": \"1\",\r\n  \"mainus\": \"p2\",\r\n  \"aqicn\": \"1\",\r\n  \"maincn\": \"p2\"\r\n  }\r\n  }\r\n}"
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Pollution"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid longitude",
+                        "examples": {
+                            "application/json": "{\r\n  \"status\": \"fail\",\r\n  \"data\": {\r\n  \"code\": \"28\",\r\n  \"reason\": \"Invalid query-string parameter value\",\r\n  \"message\": \"One or more query-string parameters contain invalid values.\"\r\n  }\r\n }"
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/v2/airquality/paris/mostPollutedTime": {
+            "get": {
+                "tags": [
+                    "airQuality"
+                ],
+                "summary": "get most polluted and recent time in Paris",
+                "operationId": "display DATETIME of the most detected polluted moment in PARIS",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "examples": {
+                            "application/json": "{\r\n  \"DATETIME\":\"2021-11-01T13:52:01.546Z\" \r\n}"
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/MostPollutedTime"
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "examples": {
+                            "application/json": "{\r\n  \"status\": \"fail\",\r\n  \"data\": {\r\n  \"code\": \"500\",\r\n  \"reason\": \"Internal server error\",\r\n  \"message\": \"Internal server error.\"\r\n  }\r\n }"
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/v2/airquality/status": {
+            "get": {
+                "tags": [
+                    "status"
+                ],
+                "summary": "Get Application status",
+                "operationId": "getApplicationStatusUsingGET",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": {
+                                "name": "air-Quality",
+                                "status": "OK",
+                                "lastUpdate": "30-10-2021",
+                                "components": [
+                                    {
+                                        "name": "airQuality_DB",
+                                        "status": "OK"
+                                    }
+                                ]
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Status"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Pollution": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "properties": {
+                        "ts": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "Timestamp of the last update in the city."
+                        },
+                        "aquis": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "Air quality index in US."
+                        },
+                        "mainus": {
+                            "type": "string",
+                            "description": "main pollutant for US AQI."
+                        },
+                        "aqicn": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "Air quality index in China."
+                        },
+                        "maincn": {
+                            "type": "string",
+                            "description": "main pollutant for Chinese AQI."
+                        }
+                    }
+                }
+            },
+            "title": "Pollution"
+        },
+        "MostPollutedTime": {
+            "type": "object",
+            "properties": {
+                "DATETIME": {
+                    "type": "date",
+                    "description": "most pulluted time in paris"
+                }
+            },
+            "title": "DATETIME"
+        },
+        "Error": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "description": "text status. Expl : fail"
+                },
+                "data": {
+                    "properties": {
+                        "code": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "Application relevant detail, defined in the API or a common list."
+                        },
+                        "message": {
+                            "type": "string",
+                            "description": "More details and corrective actions related to the error which can be shown to a client user."
+                        },
+                        "reason": {
+                            "type": "string",
+                            "description": "Explanation of the reason for the error which can be shown to a client user."
+                        }
+                    }
+                }
+            },
+            "title": "Error",
+            "description": "Used when an API throws an Error, typically with a HTTP error response-code (3xx, 4xx, 5xx)"
+        },
+        "Status": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of the API."
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Status of the API: the possible values are either “ok” or “ko”."
+                }
+            },
+            "title": "Status"
+        }
+    }
+}
