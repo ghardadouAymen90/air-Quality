@@ -25,6 +25,7 @@ module.exports = class Connection {
                         .connect((error, client) => {
                             if (error) {
                                 // if (global.globalConnection) global.globalClient.close();
+                                console.log(error)
                                 winston.error("Error establishing a database connection");
                                 winston.error(JSON.stringify(error));
                                 global.globalConnection = null;
