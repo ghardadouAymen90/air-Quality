@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:5.0.2
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=aymen
+      - MONGO_INITDB_ROOT_PASSWORD=aymen
+    ports:
+      - $MONGODB_LOCAL_PORT:27018
+    volumes:
+      - db:/data/db
+  app:
+    depends_on:
+      - mongodb
+    build: ./airQuality-app
+    restart: unless-stopped
+    ports:
+      - $NODE_LOCAL_PORT:8081
+    environment:
+      - DB_USER=$MONGODB_USER
+      - DB_PASSWORD=$MONGODB_PASSWORD
+      - DB_NAME=airQuality
+      - DB_PORT=27018
+    stdin_open: true
+    tty: true
+
+volumes:
+  db:
