@@ -40,7 +40,7 @@ module.exports = class ServerConfig {
         const configFile = fs.readFileSync(this.env + this.configFileName);
         const environement = JSON.parse(configFile);
         const db = {
-            url: "mongodb://aymen:aymen@localhost:27018/airQuality_TEST?serverSelectionTimeoutMS=5000"
+            url: "mongodb://aymen:aymen@localhost:27018/airQuality_TEST?replicaSet=rs0&serverSelectionTimeoutMS=5000"
         }
 
         const logs = {

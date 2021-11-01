@@ -2,16 +2,19 @@ version: "3.3"
 
 services:
   mongodb:
-    image: mongo:5.0.2
+    image: davybello/mongo-replica-set:4.4.8
     restart: unless-stopped
     env_file: ./.env
     environment:
       - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
       - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
     ports:
-      - "27018:27018"
+     - 27018:27018
+     - 27019:27019
     volumes:
-      - db:/data/db
+      - "./docker/.data/mongo1:/var/lib/mongo1"
+      - "./docker/.data/mongo2:/var/lib/mongo2"
   app:
     depends_on:
       - mongodb
@@ -19,7 +22,7 @@ services:
     restart: unless-stopped
     env_file: ./.env
     ports:
-      - "8081:8081"
+      - 8081:8081
     environment:
       - DB_NAME=$MONGODB_DATABASE
       - DB_PORT=$MONGODB_DOCKER_PORT
