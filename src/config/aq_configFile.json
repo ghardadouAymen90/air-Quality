@@ -1,6 +1,6 @@
 {
     "db": {
-        "url": "mongodb://aymen:aymen@localhost:27018/airQuality",
+        "url": "mongodb://localhost:27018/airQuality",
         "dbName": "airQuality",
         "dbPoolSize": 20
     },

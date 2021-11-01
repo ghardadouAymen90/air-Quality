@@ -3,15 +3,11 @@ version: "3.8"
 services:
   mongodb:
     image: davybello/mongo-replica-set:4.4.8
-    restart: unless-stopped
-    env_file: ./.env
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
-      - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
+    container_name: mongodb
     ports:
      - 27018:27018
     volumes:
-     - db:/data/db
+    - "./docker/.data/mongo1:/var/lib/mongo1"
   app:
     depends_on:
       - mongodb
@@ -25,15 +21,6 @@ services:
       - DB_PORT=$MONGODB_DOCKER_PORT
     stdin_open: true
     tty: true
-  swagger:
-    image: swaggerapi/swagger-ui
-    ports:
-      - "8085:8085"
-    environment:
-      SWAGGER_JSON: /swagger/swagger.json
-    volumes:
-      - swagger:/swagger
 
 volumes:
-  db:
-  swagger:
+  ./docker/.data/mongo1:
