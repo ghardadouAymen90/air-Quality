@@ -32,9 +32,7 @@ services:
     environment:
       SWAGGER_JSON: /swagger/swagger.json
     volumes:
-      - type: bind
-        source: ./api/dist
-        target: /swagger
+      - swagger:/swagger
 
 volumes:
   db:
