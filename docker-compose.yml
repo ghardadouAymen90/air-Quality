@@ -15,7 +15,7 @@ services:
   app:
     depends_on:
       - mongodb
-    build: ./airQuality-app
+    build: ./
     restart: unless-stopped
     env_file: ./.env
     ports:
