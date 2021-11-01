@@ -8,6 +8,8 @@ ENV AIRQUALITY_CONFIG_PATH=/airQuality-app/src/config/
 ENV PORT=8081
 ENV MONGODB_DOCKER_PORT=27018
 
+RUN apt-get update && apt-get install -y ca-certificates --no-install-recommends && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /airQuality-app
 
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
