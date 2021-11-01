@@ -4,7 +4,7 @@ LABEL maintainer="ghaaymen@gmail.com"
 LABEL Description="Air Quality API"
 
 ENV APP_NAME=airQuality
-ENV AIRQUALITY_CONFIG_PATH=/opt/app/src/config/
+ENV AIRQUALITY_CONFIG_PATH=/usr/src/app/src/config/
 ENV PORT=8081
 
 WORKDIR /usr/src/app
