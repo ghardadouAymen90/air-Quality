@@ -16,7 +16,7 @@
         "port": "8081"
     },
     "swagger": {
-        "host": "localhost:8081"
+        "host": "localhost:8085"
     },
     "iqairData": {
         "apiKey": "7f2a55b4-7c1a-4a70-83cf-1ca09cdc8a1a",
