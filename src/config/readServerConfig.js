@@ -5,8 +5,8 @@ module.exports = class ServerConfig {
     constructor() {
 
         this.configFileName = 'aq_configFile.json';
-        this.env = process.env.AIRQUALITY_CONFIG_PATH || "D:/Myfiles/airQuality/src/config/";
-        //this.env = '/opt/app-root/src/src/config/';
+        //this.env = process.env.AIRQUALITY_CONFIG_PATH || "D:/Myfiles/airQuality/src/config/";
+        this.env = process.env.AIRQUALITY_CONFIG_PATH || "/usr/src/app/src/config/";
     }
 
 
