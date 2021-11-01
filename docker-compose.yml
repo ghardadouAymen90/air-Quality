@@ -2,12 +2,17 @@ version: "3.8"
 
 services:
   mongodb:
-    image: davybello/mongo-replica-set:4.4.8
-    container_name: mongodb
+    image: mongo:4.4.8
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
     ports:
      - 27018:27018
     volumes:
-    - "./docker/.data/mongo1:/var/lib/mongo1"
+    - /home/temp/mongo/compose/data:/data/db
+    command: "--bind_ip_all --replSet rs0"
   app:
     depends_on:
       - mongodb
@@ -21,6 +26,3 @@ services:
       - DB_PORT=$MONGODB_DOCKER_PORT
     stdin_open: true
     tty: true
-
-volumes:
-  db:
