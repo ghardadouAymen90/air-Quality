@@ -17,7 +17,7 @@ services:
     build: ./airQuality-app
     restart: unless-stopped
     ports:
-      - $NODE_LOCAL_PORT=8081
+      - $NODE_LOCAL_PORT:$PORT
     environment:
       - DB_NAME=airQuality
       - DB_PORT:$MONGODB_DOCKER_PORT
