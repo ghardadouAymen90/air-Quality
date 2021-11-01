@@ -1,12 +1,13 @@
-version: "3.3"
+version: "3.8"
 
 services:
   mongodb:
     image: mongo:5.0.2
     restart: unless-stopped
+    env_file: ./.env
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=aymen
-      - MONGO_INITDB_ROOT_PASSWORD=aymen
+      - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
     ports:
       - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
     volumes:
@@ -16,11 +17,12 @@ services:
       - mongodb
     build: ./airQuality-app
     restart: unless-stopped
+    env_file: ./.env
     ports:
-      - $NODE_LOCAL_PORT:$PORT
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
     environment:
-      - DB_NAME=airQuality
-      - DB_PORT:$MONGODB_DOCKER_PORT
+      - DB_NAME=$MONGODB_DATABASE
+      - DB_PORT=$MONGODB_DOCKER_PORT
     stdin_open: true
     tty: true
 

@@ -51,7 +51,8 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+# Commented for test reasons
+# .env
 
 .idea/
 .vscode/
