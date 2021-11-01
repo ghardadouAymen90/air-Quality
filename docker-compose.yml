@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   mongodb:
-    image: davybello/mongo-replica-set:4.4.8
+    image: mongo:4.4.10
     restart: unless-stopped
     env_file: ./.env
     environment:
@@ -10,10 +10,8 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
     ports:
      - 27018:27018
-     - 27019:27019
     volumes:
-      - "./docker/.data/mongo1:/var/lib/mongo1"
-      - "./docker/.data/mongo2:/var/lib/mongo2"
+     - db:/data/db
   app:
     depends_on:
       - mongodb
