@@ -8,7 +8,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=aymen
       - MONGO_INITDB_ROOT_PASSWORD=aymen
     ports:
-      - $MONGODB_LOCAL_PORT=27018
+      - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
     volumes:
       - db:/data/db
   app:
@@ -20,7 +20,7 @@ services:
       - $NODE_LOCAL_PORT=8081
     environment:
       - DB_NAME=airQuality
-      - DB_PORT=27018
+      - DB_PORT:$MONGODB_DOCKER_PORT
     stdin_open: true
     tty: true
 
