@@ -1,6 +1,6 @@
 {
     "db": {
-        "url": "mongodb://aymen:aymen@localhost:27018/airQuality?replicaSet=rs0&serverSelectionTimeoutMS=5000&authSource=admin",
+        "url": "mongodb://aymen:aymen@localhost:27018/airQuality",
         "dbName": "airQuality",
         "dbPoolSize": 20
     },
