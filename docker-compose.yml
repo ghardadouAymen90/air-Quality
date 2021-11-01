@@ -23,4 +23,4 @@ services:
     tty: true
 
 volumes:
-  ./docker/.data/mongo1:
+  db:
