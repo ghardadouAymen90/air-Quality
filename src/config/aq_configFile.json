@@ -5,7 +5,7 @@
         "dbPoolSize": 20
     },
     "logs": {
-        "logPath": "./logs/",
+        "logPath": "/airQuality-app/logs/",
         "logLevel": "debug",
         "datePattern": "YYYY-MM-DD-HH",
         "maxFiles": "1d",
