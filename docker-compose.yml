@@ -5,6 +5,9 @@ services:
     hostname: mongo-1.mongo
     container_name: mongo-1.mongo
     image: mongo:4.4.8
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
     entrypoint: [ "/usr/bin/mongod", "--keyFile", "/data/file.key", "--replSet", "rs0", "--journal", "--bind_ip_all" ]
     ports:
      - "27018:27017"
@@ -19,6 +22,9 @@ services:
     hostname: mongo-0.mongo
     container_name: mongo-0.mongo
     image: mongo:4.4.8
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
     command: bash -c "/usr/bin/mongod --keyFile /data/file.key --replSet rs0 --journal --bind_ip_all" 
     ports:
     - "27017:27017"
