@@ -3,6 +3,13 @@
 mongo <<EOF
    var cfg = {
         "_id": "rs0",
+        "version": 1,
+        "members": [
+            {
+                "_id": 0,
+                "host": "mongo-9.mongo:27017"
+            }
+        ]
     };
     rs.initiate(cfg);
     //rs.reconfig(cfg, { force: true });
