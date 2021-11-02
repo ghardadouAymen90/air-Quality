@@ -10,37 +10,38 @@ You have to move the file /src/config/aq_configFile.json to a nown secured locat
 You have to configure an env variable named "AIRQUALITY_CONFIG_PATH", that contains the path to the aq_configFile.json file.
 
 ## configuration file
-{<br />
-    "db": {<br />
-        "url": "mongodb://localhost:27018/airQuality?replicaSet=rs0",   // url of the db replicaSet<br />
-        "dbName": "airQuality",                                         // minimum poolSize for the mongo connection<br />
-        "dbPoolSize": 20<br />
-    },<br />
-    "logs": {<br />
-        "logPath": "/logs",                                             // path to logs<br />
-        "logLevel": "debug",                                            // logs type, it can be debug, info or info.<br />
-        "datePattern": "YYYY-MM-DD-HH",                                 // rotation of logs per hour, "YYYY-MM-DD" to configure rotation per day.<br />
-        "maxFiles": "1d",                                               // keep logs for only one day<br />
-        "maxSize": "1g"                                                 // max size of log file    <br />   
-    },<br />
-    "server": {<br />
-        "port": "8081"                                                  // server port if not configured in env<br />
+```JSON
+{
+    "db": {
+        "url": "mongodb://localhost:27018/airQuality?replicaSet=rs0",   // url of the db replicaSet
+        "dbName": "airQuality",                                         // minimum poolSize for the mongo connection
+        "dbPoolSize": 20
     },
-    "swagger": {<br />
-        "host": "localhost:8081"                                        // host of swagger<br />
-    },<br />
-    "iqairData": {                                                      //iqair data<br />
-        "apiKey": "7f2a55b4-7c1a-4a70-83cf-1ca09cdc8a1a",  <br />              
-        "url": "http://api.airvisual.com",<br />
-        "desiredCoordinates": {<br />
-            "paris": {<br />
-                "LONGITUDE": "2.352222",<br />
-                "LATITUDE": "48.856613"<br />
-            }<br />
-        }<br />
-    }<br />
-}<br />
-
+    "logs": {
+        "logPath": "/logs",                                             // path to logs
+        "logLevel": "debug",                                            // logs type, it can be debug, info or info.
+        "datePattern": "YYYY-MM-DD-HH",                                 // rotation of logs per hour, "YYYY-MM-DD" to configure rotation per day.
+        "maxFiles": "1d",                                               // keep logs for only one day
+        "maxSize": "1g"                                                 // max size of log file       
+    },
+    "server": {
+        "port": "8081"                                                  // server port if not configured in env
+    },
+    "swagger": {
+        "host": "localhost:8081"                                        // host of swagger
+    },
+    "iqairData": {                                                      //iqair data
+        "apiKey": "7f2a55b4-7c1a-4a70-83cf-1ca09cdc8a1a",                
+        "url": "http://api.airvisual.com",
+        "desiredCoordinates": {
+            "paris": {
+                "LONGITUDE": "2.352222",
+                "LATITUDE": "48.856613"
+            }
+        }
+    }
+}
+```
 
 ## Install
 
@@ -83,4 +84,6 @@ It has a vagrant file to run a VM based on ubuntu 18.04 image
 It has added middlwares to ensure some security of the api
 
 ## log example
-{"timestamp":"2021-11-02T12:49:00.649Z", "component":"airQuality", "level":"INFO", "requestId":"1c879e63-f249-4101-9809-aaa6955bb572", "url":"/v2/airquality/nearest_city?&lat=48.856613&lon=2.352222","host":"localhost","statusCode":200,"start":"2021-11-02T12:49:00.649Z","service":"GET","resource":"airQuality","responseTime":"738.70ms"}
+```JSON
+{"timestamp":"2021-11-02T12:49:00.649Z","component":"airQuality","level":"INFO","requestId":"1c879e63-f249-4101-9809-aaa6955bb572","url":"/v2/airquality/nearest_city?&lat=48.856613&lon=2.352222","host":"localhost","statusCode":200,"start":"2021-11-02T12:49:00.649Z","service":"GET","resource":"airQuality","responseTime":"738.70ms"}
+```
