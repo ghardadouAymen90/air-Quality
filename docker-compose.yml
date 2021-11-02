@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
   mongodb:
+     hostname: localhost
     image: mongo:4.4.8
     restart: unless-stopped
     env_file: ./.env
@@ -11,8 +12,11 @@ services:
     ports:
      - 27018:27018
     volumes:
-    - /home/temp/mongo/compose/data:/data/db
-    command: "--bind_ip_all --replSet rs0"
+    - "./scripts/file.key:/data/file.key"
+    entrypoint: [ "/usr/bin/mongod", "--keyFile", "/data/file.key", "--replSet", "rs0", "--journal", "--bind_ip_all" ]
+    networks:
+      - mongo-net
+
   app:
     depends_on:
       - mongodb
@@ -26,3 +30,7 @@ services:
       - DB_PORT=$MONGODB_DOCKER_PORT
     stdin_open: true
     tty: true
+
+networks:
+  mongo-net:
+    name: mongo-net
