@@ -6,7 +6,7 @@ module.exports = class ServerConfig {
 
         this.configFileName = 'aq_configFile.json';
         //this.env = process.env.AIRQUALITY_CONFIG_PATH || "D:/Myfiles/airQuality/src/config/";
-        this.env = process.env.AIRQUALITY_CONFIG_PATH || "/airQuality-app/src/config/";
+        this.env = process.env.AIRQUALITY_CONFIG_PATH || "D:/Myfiles/airQuality/src/config/";
     }
 
 
@@ -40,7 +40,7 @@ module.exports = class ServerConfig {
         const configFile = fs.readFileSync(this.env + this.configFileName);
         const environement = JSON.parse(configFile);
         const db = {
-            url: "mongodb://aymen:aymen@localhost:27018/airQuality_TEST?replicaSet=rs0&serverSelectionTimeoutMS=5000"
+            url: "mongodb://localhost:27018/airQuality_TEST?replicaSet=rs0"
         }
 
         const logs = {

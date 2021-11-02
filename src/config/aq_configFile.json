@@ -1,16 +1,15 @@
 {
     "db": {
-        "url": "mongodb://aymen:aymen@mongo-0.mongo:27017/airQuality?replicaSet=rs0&serverSelectionTimeoutMS=5000&authSource=admin",
+        "url": "mongodb://localhost:27018/airQuality?replicaSet=rs0",
         "dbName": "airQuality",
         "dbPoolSize": 20
     },
     "logs": {
-        "logPath": "/airQuality-app/logs",
+        "logPath": "/logs",
         "logLevel": "debug",
         "datePattern": "YYYY-MM-DD-HH",
         "maxFiles": "1d",
-        "maxSize": "1g",
-        "logRotate": true
+        "maxSize": "1g"
     },
     "server": {
         "port": "8081"
