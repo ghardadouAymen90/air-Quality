@@ -106,5 +106,8 @@ Under airQuality DB, you will find a collection named pollution_paris .<br/>
 tap these two commands in the mongoShell terminal : <br/>
 
    $ db.pollution_paris.createIndex({"DATETIME":-1})
-   
+
    $ db.pollution_paris.createIndex({aqius:1})
+
+
+**For more informations, please consult the swagger ui**
