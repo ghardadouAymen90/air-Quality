@@ -18,7 +18,7 @@ services:
   mongo-0.mongo:
     hostname: mongo-0.mongo
     container_name: mongo-0.mongo
-    image: mongo
+    image: mongo:4.4.8
     command: bash -c "/usr/bin/mongod --keyFile /data/file.key --replSet rs0 --journal --bind_ip_all" 
     ports:
     - "27018:27018"
