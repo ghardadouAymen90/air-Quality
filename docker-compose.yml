@@ -1,23 +1,6 @@
 version: "3.8"
 
 services:
-  mongo-1.mongo:
-    hostname: mongo-1.mongo
-    container_name: mongo-1.mongo
-    image: mongo:4.4.8
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
-      - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
-    entrypoint: [ "/usr/bin/mongod", "--keyFile", "/data/file.key", "--replSet", "rs0", "--journal", "--bind_ip_all" ]
-    ports:
-     - "27018:27017"
-    restart: always
-    networks:
-     - mongo-net
-    volumes:
-     - "./file.key:/data/file.key"
-
-
   mongo-0.mongo:
     hostname: mongo-0.mongo
     container_name: mongo-0.mongo
@@ -28,18 +11,16 @@ services:
     command: bash -c "/usr/bin/mongod --keyFile /data/file.key --replSet rs0 --journal --bind_ip_all" 
     ports:
     - "27017:27017"
-    links:
-    - mongo-1.mongo:mongo-1.mongo
     restart: always
     networks:
       - mongo-net
-    volumes:
+    volumes: 
     - "./setup.sh:/setup.sh"
     - "./file.key:/data/file.key"  
 
   app:
     depends_on:
-      - mongo-1.mongo
+      - mongo-0.mongo
     build: ./
     restart: unless-stopped
     env_file: ./.env
