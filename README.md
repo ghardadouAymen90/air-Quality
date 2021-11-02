@@ -98,3 +98,11 @@ It has added middlwares to ensure some security of the api<br/>
     "responseTime":"738.70ms"
     }
 ```
+
+
+### Note
+It is required to create indexes in the db .<br/>
+Under airQuality DB, you will find a collection named pollution_paris .<br/>
+tap these two commands in the mongoShell terminal : <br/>
+$ db.pollution_paris.createIndex({"DATETIME":-1})
+$ db.pollution_paris.createIndex({aqius:1})
