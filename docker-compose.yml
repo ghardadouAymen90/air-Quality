@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  mongodb:
+  mongo-1.mongo:
     hostname: mongo-1.mongo
     container_name: mongo-1.mongo
     image: mongo:4.4.8
