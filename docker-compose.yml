@@ -9,7 +9,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
       - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
     ports:
-     - 27017:27018
+     - 27018:27018
     volumes:
     - "./file.key:/data/file.key"
     entrypoint: [ "/usr/bin/mongod", "--keyFile", "/data/file.key", "--replSet", "rs0", "--journal", "--bind_ip_all","--port","27018" ]
