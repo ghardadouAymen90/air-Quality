@@ -5,14 +5,31 @@ services:
     hostname: mongo-1.mongo
     container_name: mongo-1.mongo
     image: mongo:4.4.8
-    restart: always
     entrypoint: [ "/usr/bin/mongod", "--keyFile", "/data/file.key", "--replSet", "rs0", "--journal", "--bind_ip_all" ]
     ports:
      - "27018:27018"
+    restart: always
+    networks:
+     - mongo-net
     volumes:
-    - "./file.key:/data/file.key"
+     - "./file.key:/data/file.key"
+
+
+   mongo-0.mongo:
+    hostname: mongo-0.mongo
+    container_name: mongo-0.mongo
+    image: mongo
+    command: bash -c "/usr/bin/mongod --keyFile /data/file.key --replSet rs --journal --bind_ip_all" 
+    ports:
+    - "27018:27018"
+    links:
+    - mongo-1.mongo:mongo-1.mongo
+    restart: always
     networks:
       - mongo-net
+    volumes:
+    - "./setup.sh:/setup.sh"
+    - "./file.key:/data/file.key"  
 
   app:
     depends_on:
