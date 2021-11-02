@@ -12,7 +12,8 @@ services:
     ports:
      - 27018:27018
     volumes:
-    - "./scripts/file.key:/data/file.key"
+    - "./file.key:/data/file.key"
+    command : ["chmod", "600", "/data/file.key"]
     entrypoint: [ "/usr/bin/mongod", "--keyFile", "/data/file.key", "--replSet", "rs0", "--journal", "--bind_ip_all" ]
     networks:
       - mongo-net
