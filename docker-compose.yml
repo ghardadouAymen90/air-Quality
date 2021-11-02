@@ -7,7 +7,7 @@ services:
     image: mongo:4.4.8
     entrypoint: [ "/usr/bin/mongod", "--keyFile", "/data/file.key", "--replSet", "rs0", "--journal", "--bind_ip_all" ]
     ports:
-     - "27018:27018"
+     - "27018:27017"
     restart: always
     networks:
      - mongo-net
@@ -21,7 +21,7 @@ services:
     image: mongo:4.4.8
     command: bash -c "/usr/bin/mongod --keyFile /data/file.key --replSet rs0 --journal --bind_ip_all" 
     ports:
-    - "27017:27018"
+    - "27017:27017"
     links:
     - mongo-1.mongo:mongo-1.mongo
     restart: always
