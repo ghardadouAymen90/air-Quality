@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y ca-certificates --no-install-recommends
 
 WORKDIR /airQuality-app
 
+RUN mkdir /airQuality-app/logs
+
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 COPY package*.json ./
 

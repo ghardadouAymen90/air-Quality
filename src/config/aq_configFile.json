@@ -1,6 +1,6 @@
 {
     "db": {
-        "url": "mongodb://localhost:27018/airQuality",
+        "url": "mongodb://aymen:aymen@localhost:27018/airQuality?replicaSet=rs0&serverSelectionTimeoutMS=5000&authSource=admin",
         "dbName": "airQuality",
         "dbPoolSize": 20
     },
@@ -16,7 +16,7 @@
         "port": "8081"
     },
     "swagger": {
-        "host": "localhost:8085"
+        "host": "localhost:8081"
     },
     "iqairData": {
         "apiKey": "7f2a55b4-7c1a-4a70-83cf-1ca09cdc8a1a",
