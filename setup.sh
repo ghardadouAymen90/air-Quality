@@ -7,7 +7,7 @@ mongo <<EOF
         "members": [
             {
                 "_id": 0,
-                "host": "localhost:27018",
+                "host": "mongo-1.mongo:27018",
                 "priority": 2
             }
         ]
