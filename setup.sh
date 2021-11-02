@@ -7,12 +7,12 @@ mongo <<EOF
         "members": [
             {
                 "_id": 0,
-                "host": "mongo-0.mongo:27018",
+                "host": "mongo-0.mongo:27017",
                 "priority": 2
             },
             {
                 "_id": 1,
-                "host": "mongo-1.mongo:27018",
+                "host": "mongo-1.mongo:27017",
                 "priority": 0
             }
         ]
