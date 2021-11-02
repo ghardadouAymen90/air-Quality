@@ -7,7 +7,7 @@ mongo <<EOF
         "members": [
             {
                 "_id": 0,
-                "host": "mongo-9.mongo:27017"
+                "host": "mongo-0.mongo:27017"
             }
         ]
     };
