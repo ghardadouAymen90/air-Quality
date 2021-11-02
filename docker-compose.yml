@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   mongodb:
-     hostname: localhost
+    hostname: localhost
     image: mongo:4.4.8
     restart: unless-stopped
     env_file: ./.env
